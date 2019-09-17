@@ -33,6 +33,10 @@ namespace OnlineBinaryExpressionEvaluator.Pages.Expressions
                 return Page();
             }
 
+            Expression.AdditionResult = Expression.BinaryAddition(Expression.Operand1, Expression.Operand2);
+            Expression.MultiplicationResult = Expression.BinaryMultiplication(Expression.Operand1, Expression.Operand2);
+            Expression.NegationResult1 = Expression.BinaryNegation(Expression.Operand1);
+            Expression.NegationResult2 = Expression.BinaryNegation(Expression.Operand2);
             _context.Expression.Add(Expression);
             await _context.SaveChangesAsync();
 

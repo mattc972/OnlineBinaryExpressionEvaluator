@@ -49,6 +49,10 @@ namespace OnlineBinaryExpressionEvaluator.Pages.Expressions
 
             try
             {
+                Expression.AdditionResult = Expression.BinaryAddition(Expression.Operand1, Expression.Operand2);
+                Expression.MultiplicationResult = Expression.BinaryMultiplication(Expression.Operand1, Expression.Operand2);
+                Expression.NegationResult1 = Expression.BinaryNegation(Expression.Operand1);
+                Expression.NegationResult2 = Expression.BinaryNegation(Expression.Operand2);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
