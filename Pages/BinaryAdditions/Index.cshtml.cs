@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using OnlineBinaryExpressionEvaluator.Models;
 
-namespace OnlineBinaryExpressionEvaluator.Pages.Expressions
+namespace OnlineBinaryExpressionEvaluator.Pages.BinaryAdditions
 {
     public class IndexModel : PageModel
     {
@@ -18,11 +18,11 @@ namespace OnlineBinaryExpressionEvaluator.Pages.Expressions
             _context = context;
         }
 
-        public IList<Expression> Expression { get;set; }
+        public IList<BinaryAddition> BinaryAddition { get;set; }
 
         public async Task OnGetAsync()
         {
-            Expression = await _context.Expression.ToListAsync();
+            BinaryAddition = await _context.BinaryAddition.ToListAsync();
         }
     }
 }

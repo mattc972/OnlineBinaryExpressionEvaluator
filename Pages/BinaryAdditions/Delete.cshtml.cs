@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using OnlineBinaryExpressionEvaluator.Models;
 
-namespace OnlineBinaryExpressionEvaluator.Pages.Expressions
+namespace OnlineBinaryExpressionEvaluator.Pages.BinaryAdditions
 {
     public class DeleteModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace OnlineBinaryExpressionEvaluator.Pages.Expressions
         }
 
         [BindProperty]
-        public Expression Expression { get; set; }
+        public BinaryAddition BinaryAddition { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +28,9 @@ namespace OnlineBinaryExpressionEvaluator.Pages.Expressions
                 return NotFound();
             }
 
-            Expression = await _context.Expression.FirstOrDefaultAsync(m => m.ID == id);
+            BinaryAddition = await _context.BinaryAddition.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Expression == null)
+            if (BinaryAddition == null)
             {
                 return NotFound();
             }
@@ -44,11 +44,11 @@ namespace OnlineBinaryExpressionEvaluator.Pages.Expressions
                 return NotFound();
             }
 
-            Expression = await _context.Expression.FindAsync(id);
+            BinaryAddition = await _context.BinaryAddition.FindAsync(id);
 
-            if (Expression != null)
+            if (BinaryAddition != null)
             {
-                _context.Expression.Remove(Expression);
+                _context.BinaryAddition.Remove(BinaryAddition);
                 await _context.SaveChangesAsync();
             }
 

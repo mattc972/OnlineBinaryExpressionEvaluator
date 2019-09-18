@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OnlineBinaryExpressionEvaluator.Models;
 
-namespace OnlineBinaryExpressionEvaluator.Pages.Expressions
+namespace OnlineBinaryExpressionEvaluator.Pages.BinaryAdditions
 {
     public class EditModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace OnlineBinaryExpressionEvaluator.Pages.Expressions
         }
 
         [BindProperty]
-        public Expression Expression { get; set; }
+        public BinaryAddition BinaryAddition { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +29,9 @@ namespace OnlineBinaryExpressionEvaluator.Pages.Expressions
                 return NotFound();
             }
 
-            Expression = await _context.Expression.FirstOrDefaultAsync(m => m.ID == id);
+            BinaryAddition = await _context.BinaryAddition.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Expression == null)
+            if (BinaryAddition == null)
             {
                 return NotFound();
             }
@@ -45,19 +45,16 @@ namespace OnlineBinaryExpressionEvaluator.Pages.Expressions
                 return Page();
             }
 
-            _context.Attach(Expression).State = EntityState.Modified;
+            _context.Attach(BinaryAddition).State = EntityState.Modified;
 
             try
             {
-                Expression.AdditionResult = Expression.BinaryAddition(Expression.Operand1, Expression.Operand2);
-                Expression.MultiplicationResult = Expression.BinaryMultiplication(Expression.Operand1, Expression.Operand2);
-                Expression.NegationResult1 = Expression.BinaryNegation(Expression.Operand1);
-                Expression.NegationResult2 = Expression.BinaryNegation(Expression.Operand2);
+                BinaryAddition.AdditionResult = BinaryAddition.EvaluateBinaryAddition(BinaryAddition.Operand1, BinaryAddition.Operand2);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ExpressionExists(Expression.ID))
+                if (!BinaryAdditionExists(BinaryAddition.ID))
                 {
                     return NotFound();
                 }
@@ -70,9 +67,9 @@ namespace OnlineBinaryExpressionEvaluator.Pages.Expressions
             return RedirectToPage("./Index");
         }
 
-        private bool ExpressionExists(int id)
+        private bool BinaryAdditionExists(int id)
         {
-            return _context.Expression.Any(e => e.ID == id);
+            return _context.BinaryAddition.Any(e => e.ID == id);
         }
     }
 }

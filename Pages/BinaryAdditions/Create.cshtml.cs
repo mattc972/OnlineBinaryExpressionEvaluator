@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineBinaryExpressionEvaluator.Models;
 
-namespace OnlineBinaryExpressionEvaluator.Pages.Expressions
+namespace OnlineBinaryExpressionEvaluator.Pages.BinaryAdditions
 {
     public class CreateModel : PageModel
     {
@@ -24,7 +24,7 @@ namespace OnlineBinaryExpressionEvaluator.Pages.Expressions
         }
 
         [BindProperty]
-        public Expression Expression { get; set; }
+        public BinaryAddition BinaryAddition { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -33,11 +33,8 @@ namespace OnlineBinaryExpressionEvaluator.Pages.Expressions
                 return Page();
             }
 
-            Expression.AdditionResult = Expression.BinaryAddition(Expression.Operand1, Expression.Operand2);
-            Expression.MultiplicationResult = Expression.BinaryMultiplication(Expression.Operand1, Expression.Operand2);
-            Expression.NegationResult1 = Expression.BinaryNegation(Expression.Operand1);
-            Expression.NegationResult2 = Expression.BinaryNegation(Expression.Operand2);
-            _context.Expression.Add(Expression);
+            BinaryAddition.AdditionResult = BinaryAddition.EvaluateBinaryAddition(BinaryAddition.Operand1, BinaryAddition.Operand2);
+            _context.BinaryAddition.Add(BinaryAddition);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

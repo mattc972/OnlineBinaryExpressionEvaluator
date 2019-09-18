@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using OnlineBinaryExpressionEvaluator.Models;
 
-namespace OnlineBinaryExpressionEvaluator.Pages.Expressions
+namespace OnlineBinaryExpressionEvaluator.Pages.BinaryMultiplications
 {
     public class DetailsModel : PageModel
     {
@@ -18,7 +18,7 @@ namespace OnlineBinaryExpressionEvaluator.Pages.Expressions
             _context = context;
         }
 
-        public Expression Expression { get; set; }
+        public BinaryMultiplication BinaryMultiplication { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -27,9 +27,9 @@ namespace OnlineBinaryExpressionEvaluator.Pages.Expressions
                 return NotFound();
             }
 
-            Expression = await _context.Expression.FirstOrDefaultAsync(m => m.ID == id);
+            BinaryMultiplication = await _context.BinaryMultiplication.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Expression == null)
+            if (BinaryMultiplication == null)
             {
                 return NotFound();
             }

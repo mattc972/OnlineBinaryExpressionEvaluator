@@ -7,39 +7,27 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnlineBinaryExpressionEvaluator.Models
 {
-    public class Expression
+    public class BinaryAddition
     {
         public int ID { get; set;  }
-        
+
         [RegularExpression(@"^[01]+$")]
         [StringLength(7, MinimumLength = 7)]
-        public string Operand1 { get; set;  }
-        
-        
+        [Required]
+        public string Operand1 { get; set; }
+
+
         [RegularExpression(@"^[01]+$")]
         [StringLength(7, MinimumLength = 7)]
-        public string Operand2 { get; set;  }
-        
-        
+        [Required]
+        public string Operand2 { get; set; }
+
+
         [RegularExpression(@"^[01]+$")]
         [StringLength(8, MinimumLength = 8)]
         public string AdditionResult { get; set; }
-        
-        
-        [RegularExpression(@"^[01]+$")]
-        [StringLength(14, MinimumLength = 14)]
-        public string MultiplicationResult { get; set;  }
 
-
-        [RegularExpression(@"^[01]+$")]
-        [StringLength(8, MinimumLength = 8)]
-        public string NegationResult1 { get; set;  }
-
-        [RegularExpression(@"^[01]+$")]
-        [StringLength(8, MinimumLength = 8)]
-        public string NegationResult2 { get; set;  }
-
-        public string BinaryAddition(string a, string b)
+        public string EvaluateBinaryAddition(string a, string b)
         {
             // There is no input checking required; the data was checked for validity upon being put in the database.
 
@@ -76,8 +64,8 @@ namespace OnlineBinaryExpressionEvaluator.Models
                         {
                             c[i + 1] = '1';
                             carryOver = '0';
-        
-                }
+
+                        }
 
                         // Otherwise, if the carry-over is currently 0:
                         else
@@ -124,16 +112,6 @@ namespace OnlineBinaryExpressionEvaluator.Models
 
             string result = new string(c);
             return result;
-        }
-
-        public string BinaryNegation(string a)
-        {
-            return "";
-        }
-
-        public string BinaryMultiplication(string a, string b)
-        {
-            return "";
         }
     }
 }

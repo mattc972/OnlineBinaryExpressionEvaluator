@@ -1,0 +1,37 @@
+﻿@page
+@model OnlineBinaryExpressionEvaluator.Pages.BinaryMultiplications.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>BinaryMultiplication</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BinaryMultiplication.Operand1)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BinaryMultiplication.Operand1)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BinaryMultiplication.Operand2)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BinaryMultiplication.Operand2)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BinaryMultiplication.MultiplicationResult)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BinaryMultiplication.MultiplicationResult)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.BinaryMultiplication.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
